@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=u-tf-8 />
+<title>Wildfire Acerage Burned</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<style>
+  body {
+    margin:0;
+    padding:0;
+    font-family:"Helvetica Neue";
+    sans-serif;
+    }
+
+  h1 {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    padding: 8px 2%;
+    margin: 0;
+    background:"#";
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    color: whitesmoke;
+    font-size: 1.75em;
+    z-index: 800;
+    }
+
+  #map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+   }
+
+
+</style>
+
+</head>
+<body>
+    <div id='map'></div>
+    <h1>Acres of Land Burned by Forest Fire, 2020</h1>
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+
+<script>
+
+
+    var map = L.map('map', {
+        center: [41.5, -98.3],
+        zoom: 4
+
+    });
+
+    var Jawg_Matrix = L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+  	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  	minZoom: 0,
+  	maxZoom: 22,
+  	subdomains: 'abcd',
+  	accessToken: 'RqJUpeugP20ZNK2vs9OMCL2RK4o4zZ2DqLRFdwMa8AsdZxeG3slzrWDfdw29XMVd'
+  }).addTo(map);
+
+
+    states = L.geoJson.ajax("assets/data.geojson",{
+      attribution: '<a href="https://www.statista.com/statistics/217072/number-of-fires-and-acres-burned-due-to-us-wildfires/"> Statista </a>, Map: Eliza Merritt',
+      pointToLayer: function (feature, x){
+        return L.circleMarker(x, {
+          color: '#E73420',
+          opacity: 1,
+          weight: 2,
+          fillColor: '#E73420',
+          fillOpacity: .6,
+          radius: calcRadius(feature.properties.estimate)
+        }).on({
+                mouseover: function(e){
+                  this.setStyle({color: 'blue',fillColor: 'blue'});
+                                      },
+                mouseout: function(e){
+                  this.setStyle({color:'#E73420', fillColor: '#E73420'});
+                  } })},});
+
+var minValue = 578759;
+var minRadius = 30;
+
+function calcRadius(val) {
+        return 1.00 * Math.pow(val/minValue,.4) * minRadius;
+        }
+
+L.control.scale({position: 'bottomleft'}).addTo(map);
+
+states.addTo(map);
+
+
+
+</script>
+</body>
+</html>
+
+-
