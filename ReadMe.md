@@ -2,11 +2,11 @@
 
 ### Introduction
 
-##### This application allows the user to visualize acres burned by forest fire in all 50 states. Acreage values are represented by a proportional symbol map. The user is able to scroll and pan the entire global map, though data only exists for the United States.
+##### This application allows the user to visualize acres burned by forest fire in all 50 states. Acreage values are represented by a proportional symbol map. The user is able to scroll and pan the entire global map, though data only exists for the United States. Users are able to read about how to prevent forest fires and also are able to access more fire data.
 
 ### Major Functions
 
-##### This map features a highlighted quality when scrolling over circles so the user can be sure which circle their mouse is over. The map is pannable and adjustable. The title is stagnant and will always be present in the upper left corner. A link to the original data source is located in the bottom right of the map.
+##### This map features a highlighted quality when scrolling over circles so the user can be sure which circle their mouse is over. The map is pannable and adjustable. The title is stagnant and will always be present in the upper left corner. A link to the original data source is located in the bottom right of the map. There is a description box that provides a link to the National interagency Fire Center where users can get the most up to date fire data.
 
 ### Libraries and Data Sources
 
